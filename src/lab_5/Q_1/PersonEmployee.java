@@ -8,7 +8,7 @@ public class PersonEmployee {
         System.out.print("Enter no of employees: ");
         int n = sc.nextInt();
         for (int i = 0; i < n; i++) {
-            System.out.println("Employee No. - " + i + 1);
+            System.out.println("Employee No. - " + (i + 1));
             System.out.print("Enter name: ");
             String name = sc.next();
             System.out.print("Enter age: ");

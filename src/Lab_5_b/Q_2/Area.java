@@ -1,14 +1,8 @@
+package Lab_5_b.Q_2;
+
 import java.util.Scanner;
 
-abstract class shape {
-    abstract void RectangleArea(int l, int b);
-
-    abstract void SquareArea(int s);
-
-    abstract void CircleArea(int c);
-}
-
-class Area extends shape {
+public class Area extends shape {
 
     public void RectangleArea(int length, int breadth) {
         int result = length * breadth;
