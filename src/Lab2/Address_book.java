@@ -5,7 +5,6 @@ import java.util.*;
 public class Address_book {
     public static void main(String[] args) {
         Mailbook P1 = new Mailbook();
-        Mailbook P2 = new Mailbook();
         Scanner input = new Scanner(System.in);
         System.out.print("Enter Name : ");
         P1.name = input.nextLine();

@@ -23,9 +23,7 @@ public class TestOddAndEven {
                 ob1.addNumber(i);
                 System.out.println(ob1.toString());
             }
-
-        };
-
-
+        }
+        in.close();
     }
 }

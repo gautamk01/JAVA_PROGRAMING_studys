@@ -21,8 +21,6 @@ public class Stack {
 
             System.out.println("The STACK is Overflowing !!!");
         }
-
-
     }
 
     public void DISPLAY() {
@@ -35,8 +33,8 @@ public class Stack {
             }
             System.out.print("\n");
         }
-
     }
+
     public  void DELETE() {
         if (top == 0) {
             System.out.println("The STACK is Empty");
@@ -54,7 +52,7 @@ public class Stack {
         if (top == 0) {
             System.out.println("The STACK is Empty");
         } else {
-            System.out.println("element seen when peeped in is " + sarray[top - 1]);
+            System.out.println("Element seen when peeped in is " + sarray[top - 1]);
         }
 
     }

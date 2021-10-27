@@ -43,7 +43,6 @@ public class q_1 {
     public static void main(String[] args) {
         q_1 ob1 = new q_1();
 //a) Add two floating point numbers
-
         float a = 12.23f;
         float b = 1.24f;
         float k = ob1.ADD(a,b);

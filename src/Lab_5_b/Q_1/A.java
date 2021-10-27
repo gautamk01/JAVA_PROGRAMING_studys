@@ -1,6 +1,6 @@
 package Lab_5_b.Q_1;
 
-public class A extends mark {
+public class A extends Mark {
     private int phy;
     private int chem;
     private int math;
