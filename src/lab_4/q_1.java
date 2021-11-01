@@ -20,7 +20,7 @@ class ComplexNumber {
 }
 
 public class q_1 {
-    float ADD(float a, float b) {
+    public float ADD(float a, float b) {
         return a + b;
     }
 
@@ -53,7 +53,7 @@ public class q_1 {
         ComplexNumber result =  ob1.ADD(c1,c2);
         System.out.println("After adding two complex numbers: " + result.getReal() + " + i" + result.getImaginary());
 
-        //c) Two Vector addition ( See Hint below)
+        //c) Two Vector addition
         ob1.ADD(3,4,5,-1);
     }
 }

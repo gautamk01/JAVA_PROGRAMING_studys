@@ -1,9 +1,10 @@
 package LAB3;
 
 import java.util.*;
-import java.lang.*;
+
+
 public class QUEUE {
-    int Q_array[] = new int[10];
+    int[] Q_array = new int[10];
     int front = 0;
     int rear = 0;
     int size = 0;
@@ -44,7 +45,7 @@ public class QUEUE {
             System.out.println("2.WHONEXT");
             System.out.println("3.Display");
             System.out.println("4.DELETE");
-            System.out.println("5.Exite");
+            System.out.println("5.Exit");
             System.out.print("Enter the Choice : ");
             key = input.nextInt();
             switch (key){

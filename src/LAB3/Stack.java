@@ -18,14 +18,13 @@ public class Stack {
             sarray[top] = x;
             top++;
         } else {
-
             System.out.println("The STACK is Overflowing !!!");
         }
     }
 
     public void DISPLAY() {
         if (top == 0) {
-            System.out.println("STACK is underflow !!");
+            System.out.println("STACK is Empty !!");
         } else {
             System.out.print("DECK STATUS :");
             for (int i = size - 1; i >= 0; i--) {
@@ -37,7 +36,7 @@ public class Stack {
 
     public  void DELETE() {
         if (top == 0) {
-            System.out.println("The STACK is Empty");
+            System.out.println("STACK underflow");
         }
         else{
             top--;

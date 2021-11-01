@@ -21,7 +21,7 @@ public class student {
     }
 
 
-    student[] sort(student[] obj) {
+    student[] sort(student[] obj) { //array of class object
         for (int i = 0; i < obj.length - 1; i++)
             if (obj[i].rollno > obj[i + 1].rollno) {
                 student temp = obj[i];
@@ -49,6 +49,8 @@ public class student {
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();
         student[] obj = new student[size];
+//        int[] arrray = new int[size];
+//        int[] array = {1,4,254};
         int R;
         String S;
         int m, e, c;
