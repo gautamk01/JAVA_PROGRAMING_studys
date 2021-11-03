@@ -45,18 +45,17 @@ public class student {
     }
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         System.out.println("Enter No of students : ");
-        Scanner sc = new Scanner(System.in);
-        int size = sc.nextInt();
+        int size = in.nextInt();
         student[] obj = new student[size];
-//        int[] arrray = new int[size];
-//        int[] array = {1,4,254};
+
         int R;
         String S;
         int m, e, c;
         for (int i = 0; i < size; i++) {
+            Scanner sc = new Scanner(System.in);
             System.out.println("Enter the details of student " + (i + 1));
-            sc.nextLine();
             System.out.print("Enter student Name :");
             S = sc.nextLine();
             System.out.print("Enter Rollno : ");
@@ -69,9 +68,8 @@ public class student {
             c = sc.nextInt();
             obj[i] = new student(R, S, m, e, c);
         }
-        for (int i = 0; i < size; i++) {
-            obj[i].sort(obj);
-        }
+
+        obj = obj[0].sort(obj);
         System.out.println("Student details after sorting acc to RollNos");
         for (int i = 0; i < size; i++) {
             obj[i].ShowData();

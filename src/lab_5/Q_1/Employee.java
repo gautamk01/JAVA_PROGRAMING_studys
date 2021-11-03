@@ -6,7 +6,7 @@ public class Employee extends person {
 
     //constructor
     public Employee(String name, int age, int emid, double hourlypay) {
-        super(name, age);//invoking the parent constructor
+        super(name, age);
         this.emid = emid;
         this.hourlypay = hourlypay;
     }
@@ -40,7 +40,8 @@ public class Employee extends person {
     public void payday(int hours) {
         if (hours >= 40) {
            hourlypay = 40 * hourlypay + ((hourlypay - 40) * 1.5);
-        } else {
+        }
+        else {
             hourlypay = hourlypay * hours;
         }
 
