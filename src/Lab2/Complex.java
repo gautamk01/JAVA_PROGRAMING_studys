@@ -1,3 +1,5 @@
+package Lab2;
+
 public class Complex {
 
     // Declaring variable
@@ -39,7 +41,6 @@ public class Complex {
         return temp;
     }
 
-
     // Function for printing complex number
     void printComplexNumber() {
         System.out.println("Complex number: " + real + " + " + imaginary + "i");
@@ -68,7 +69,7 @@ public class Complex {
         // calling addComp() method
         C3 = C3.addComp(C1, C2);
 
-        //calling sub() method
+        // calling sub() method
         Complex c4 = new Complex();
         c4 = c4.sub(C1, C2);
 
@@ -78,11 +79,6 @@ public class Complex {
         System.out.print("Differance of ");
         c4.printComplexNumber();
 
-
     }
 
 }
-
-
-
-

@@ -5,7 +5,7 @@ public class driver {
     public static void main(String[] args) {
         classTwo ob2 = new classTwo();
         classOne ob1 = new classOne();
-        ob1.methordOne("Gautam Krishna M");
-        ob2.methordTwo("AM.EN.U4CSE20325");
+        ob1.methordOne("Jhone");
+        ob2.methordTwo("239");
     }
 }
