@@ -1,18 +1,36 @@
-import javax.swing.*;
+interface inter {
+    void methodone();
+}
+
+abstract class Abstr implements inter {
+    public void methodTwo() {
+        System.out.println(" Methrod");
+
+    };// This is abstract
+}
+
+class Test extends Abstr {
+    public void methodTwo() {
+        System.out.println("This is Method 2");
+
+    }
+
+    public void methodone() {
+        System.out.println("Methord 1");
+
+    }
+
+    void methordthree() {
+        System.out.println("Methord 3");
+
+    }
+}
 
 public class guidemo1 {
-    public guidemo1() {
-        JFrame js1 = new JFrame(); // create a jframe
-        JButton bt1 = new JButton("Click ME!"); // create a new button
-        bt1.setBounds(200, 250, 100, 50);// x-axise y-axise width height
-        js1.add(bt1);// adding the sbutton on jfram
-        js1.setSize(500, 500);
-        js1.setLayout(null);
-        js1.setVisible(true);
-    }
-
     public static void main(String[] args) {
-        new guidemo1();
+        Test t = new Test();
+        t.methodone();
+        t.methodTwo();
+        t.methordthree();
     }
-
 }
