@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class frame_2 {
     public static void main(String[] args) {
-        ImageIcon img = new ImageIcon("C:\\Users\\Student\\Pictures\\spidy.png");
 
         JLabel label = new JLabel();
         label.setText("HI  👍");

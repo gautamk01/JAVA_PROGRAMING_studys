@@ -15,7 +15,8 @@ public class Ex_2 {
             for (int i : array) {
                 System.out.print(i + " ");
             }
-        } catch (ArithmeticException e) {
+        } 
+        catch (ArithmeticException e) {
             System.out.println("Division not possible");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("The array size is 4");
