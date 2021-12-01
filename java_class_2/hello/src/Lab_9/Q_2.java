@@ -1,13 +1,8 @@
 package Lab_9;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class Q_2 extends JFrame {
 
@@ -16,8 +11,9 @@ public class Q_2 extends JFrame {
     private int c = 88;
 
     public Q_2() {
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 326, 107);
+        setBounds(100, 100, 426, 107);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -41,12 +37,13 @@ public class Q_2 extends JFrame {
             }
         });
 
-        btn1.setBounds(221, 18, 83, 21);
+        btn1.setBounds(221, 18, 113, 21);
         contentPane.add(btn1);
     }
 
     public static void main(String[] args) {
         Q_2 frame = new Q_2();
+
         frame.setVisible(true);
     }
 
