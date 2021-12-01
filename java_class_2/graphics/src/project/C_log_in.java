@@ -1,5 +1,5 @@
 package project;
-
+import java.awt.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -72,6 +72,10 @@ public class C_log_in {
 		btn1.setBounds(10, 409, 141, 30);
 		panel.add(btn1);
 		
+ 
+        
+	
+		 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(C_log_in.class.getResource("/img/pi1.jpg")));
 		lblNewLabel.setBounds(0, -107, 481, 569);

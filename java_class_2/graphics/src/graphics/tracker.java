@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -42,13 +43,13 @@ public class tracker extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		JLabel lblSecondPage = new JLabel("Second Page");
 		lblSecondPage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSecondPage.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 40));
 		lblSecondPage.setBounds(81, 35, 227, 63);
 		contentPane.add(lblSecondPage);
-
+		
 		JButton btnBackHome = new JButton("Back Home");
 		btnBackHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
