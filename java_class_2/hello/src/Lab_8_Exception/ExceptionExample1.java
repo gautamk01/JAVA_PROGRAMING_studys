@@ -1,4 +1,4 @@
-package Lab_8;
+package Lab_8_Exception;
 
 class BadTemperature extends Exception {
     BadTemperature(String reason) {

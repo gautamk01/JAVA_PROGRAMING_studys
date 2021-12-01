@@ -22,7 +22,6 @@ public class Ex_3 {
         } finally {
             if (correction) {
                 System.out.println("Result");
-
                 System.out.println(k);
             }
             System.out.println("BYE");

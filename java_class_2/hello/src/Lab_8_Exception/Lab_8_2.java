@@ -1,4 +1,4 @@
-package Lab_8;
+package Lab_8_Exception;
 
 import java.util.Scanner;
 
@@ -20,7 +20,7 @@ public class Lab_8_2 {
             System.out.println(a[num]);
 
         } catch (NumberFormatException e) {
-            System.out.println("(NumberFormatException Occures");
+            System.out.println("NumberFormatException Occures");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(
                     "You are trying to access any item of an array at an index which is not present in the array - ArrayIndexOutOfBoundsException ");

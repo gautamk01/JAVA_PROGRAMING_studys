@@ -1,10 +1,10 @@
-package Lab_8;
+package Lab_8_Exception;
 
 public class Lab_8_3 {
     public static void main(String[] args) {
-        // Initializing String variable with null value
+
         String phone = "";
-        // Checking if ptr.equals null or works fine.
+
         try {
             if (phone.equals("apple"))
                 System.out.println("Same smartphone");

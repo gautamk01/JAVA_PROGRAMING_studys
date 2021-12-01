@@ -1,4 +1,4 @@
-package Lab_8;
+package Lab_8_Exception;
 
 import java.util.Scanner;
 
