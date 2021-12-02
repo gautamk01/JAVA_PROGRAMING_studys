@@ -41,6 +41,11 @@ public class Bill_page {
 		initialize();
 	}
 
+	// private void linker() {
+	// System.out.println("hello");
+
+	// }
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
