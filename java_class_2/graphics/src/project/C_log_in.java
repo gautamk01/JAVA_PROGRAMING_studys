@@ -120,6 +120,13 @@ public class C_log_in {
 		panel_1.add(User_label_1);
 		
 		Button button = new Button("Submit");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				front_page f1 = new front_page();
+				f1.F_pg.setVisible(true);
+				Client_frame.dispose();
+			}
+		});
 		button.setFont(new Font("Bernard MT Condensed", Font.PLAIN, 18));
 		button.setBackground(new Color(0, 206, 209));
 		button.setBounds(78, 370, 262, 59);
