@@ -1,12 +1,12 @@
 package project;
 
-import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -18,56 +18,11 @@ public class C_log_in {
 	public JFrame Client_frame;
 	private JTextField userfield;
 	private JTextField passfield;
-	boolean checker;
-	public String blank = "";
+	public JOptionPane errorbox;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-
-		C_log_in window = new C_log_in();
-		window.Client_frame.setVisible(true);
-
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public C_log_in() {
 
 		initialize();
-
-	}
-
-	public void linker(String name, int pass) {
-		Connection con = null;
-		Statement stmt = null;
-		try {
-			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/help", "postgres", "Gautam3377");
-			stmt = con.createStatement();
-			String sql = "select * from login where username = '" + name + "' and password =" + pass + ";";
-			ResultSet res = stmt.executeQuery(sql);
-			if (res.next()) {
-				System.out.println("Yeah");
-				checker = true;
-
-			} else {
-				System.out.println("oobi");
-				checker = false;
-
-			}
-
-			stmt.close();
-			if (con != null) {
-				System.out.println("Connected");
-
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-
-		}
 
 	}
 
@@ -147,25 +102,38 @@ public class C_log_in {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				front_page f1 = new front_page();
-				login_error error = new login_error();
+				Client_login_connector log_connect = new Client_login_connector();
+
 				String user_name = userfield.getText();
 				int pass = Integer.valueOf(passfield.getText());
-				linker(user_name, pass);
-				System.out.println(checker);
-				if (checker) {
+				log_connect.linker(user_name, pass);
+
+				if (log_connect.checker) {
 					f1.F_pg.setVisible(true);
 					Client_frame.dispose();
 				} else {
-					error.error_frame.setVisible(true);
-					userfield.setText(" ");
-					passfield.setText(" ");
+
+					JOptionPane.showMessageDialog(Client_frame, "Sorry Your Username or password is wrong ");
+					userfield.setText("");
+					passfield.setText("");
 				}
 
 			}
 		});
+
 		button.setFont(new Font("Bernard MT Condensed", Font.PLAIN, 18));
 		button.setBackground(new Color(0, 206, 209));
 		button.setBounds(78, 370, 262, 59);
 		panel_1.add(button);
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+
+		C_log_in window = new C_log_in();
+		window.Client_frame.setVisible(true);
+
 	}
 }

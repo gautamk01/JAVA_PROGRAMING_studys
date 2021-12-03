@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class login_error {
 
@@ -51,15 +52,15 @@ public class login_error {
 		error_frame.getContentPane().add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Try again");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				C_log_in c1 = new C_log_in();
-				c1.blank = "";
 				error_frame.dispose();
 
 			}
 		});
-		btnNewButton.setBounds(161, 106, 83, 21);
+		btnNewButton.setBounds(161, 106, 138, 21);
 		error_frame.getContentPane().add(btnNewButton);
 	}
 }

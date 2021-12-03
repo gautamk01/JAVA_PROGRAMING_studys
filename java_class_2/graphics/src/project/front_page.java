@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -14,10 +12,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import java.awt.Component;
 import javax.swing.ImageIcon;
 
 public class front_page {
@@ -68,27 +62,27 @@ public class front_page {
 		Header.setBounds(0, 0, 784, 68);
 		F_pg.getContentPane().add(Header);
 		Header.setLayout(null);
-		
-				JLabel heading = new JLabel("MyPharma");
-				heading.setBounds(164, 0, 436, 58);
-				Header.add(heading);
-				heading.setHorizontalAlignment(SwingConstants.CENTER);
-				heading.setForeground(Color.WHITE);
-				heading.setFont(new Font("Tahoma", Font.PLAIN, 29));
-				heading.setBackground(Color.WHITE);
-				
-				Button button = new Button("Log out");
-				button.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						mainp1 m1 = new mainp1();
-						m1.mainframe.setVisible(true);
-						F_pg.dispose();
-					}
-				});
-				button.setBounds(657, 20, 117, 27);
-				Header.add(button);
-				button.setForeground(new Color(240, 255, 255));
-				button.setBackground(new Color(255, 69, 0));
+
+		JLabel heading = new JLabel("MyPharma");
+		heading.setBounds(164, 0, 436, 58);
+		Header.add(heading);
+		heading.setHorizontalAlignment(SwingConstants.CENTER);
+		heading.setForeground(Color.WHITE);
+		heading.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		heading.setBackground(Color.WHITE);
+
+		Button button = new Button("Log out");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainp1 m1 = new mainp1();
+				m1.mainframe.setVisible(true);
+				F_pg.dispose();
+			}
+		});
+		button.setBounds(657, 20, 117, 27);
+		Header.add(button);
+		button.setForeground(new Color(240, 255, 255));
+		button.setBackground(new Color(255, 69, 0));
 
 		JPanel Nav = new JPanel();
 		Nav.setLayout(null);
@@ -114,7 +108,7 @@ public class front_page {
 				Place_order_page po = new Place_order_page();
 				po.P_O_frame.setVisible(true);
 				F_pg.dispose();
-				
+
 			}
 		});
 		Nav_btn2.setBounds(198, 25, 165, 39);

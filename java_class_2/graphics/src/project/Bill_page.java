@@ -131,12 +131,16 @@ public class Bill_page {
 		panel_1.setBackground(new Color(153, 51, 204));
 		panel_1.setBounds(0, 0, 152, 347);
 		panel.add(panel_1);
+		panel_1.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("BILLING");
+		lblNewLabel_2.setBounds(32, 74, 69, 20);
+		lblNewLabel_2.setForeground(Color.WHITE);
 		panel_1.add(lblNewLabel_2);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 
 		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setBounds(113, 15, 0, 0);
 		panel_1.add(lblNewLabel_3);
 
 		JLabel lblNewLabel = new JLabel("Date of Ordering");
