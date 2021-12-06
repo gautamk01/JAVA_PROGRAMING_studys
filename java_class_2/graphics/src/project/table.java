@@ -4,25 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import net.proteanit.sql.DbUtils;
-
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
-import java.sql.*;
 
 public class table {
 
 	private JFrame frame;
-	private JTable table;
 	private JTable table_1;
 
 	public void linker() {
