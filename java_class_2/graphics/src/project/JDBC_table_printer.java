@@ -15,7 +15,7 @@ public class JDBC_table_printer {
         try {
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/help", "postgres",
-                    "Gautam3377");
+                    "admin");
             stmt = con.createStatement();
             stmt1 = con.createStatement();
             // String sql1 = "delete from Store where store_username = 'Ram';";
@@ -44,7 +44,7 @@ public class JDBC_table_printer {
         try {
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/help", "postgres",
-                    "Gautam3377");
+                    "admin");
             stmt = con.createStatement();
             stmt1 = con.createStatement();
             String sql = "delete from " + tablename + " Where " + condition + " ;";

@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
@@ -31,7 +33,7 @@ public class trail extends JFrame {
 		try {
 			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/help", "postgres",
-					"Gautam3377");
+					"admin");
 			stmt = con.createStatement();
 			stmt1 = con.createStatement();
 
@@ -39,7 +41,7 @@ public class trail extends JFrame {
 			// String sql1 = "select * from Store;";
 			ResultSet res = stmt1.executeQuery(sql);
 			// ResultSet res1 = stmt.executeQuery(sql1);
-			// table.setModel(DbUtils.resultSetToTableModel(res));
+			table.setModel(DbUtils.resultSetToTableModel(res));
 			if (res.next()) {
 				System.out.println("Yeah");
 
