@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class mainp1 {
+public class mainp1 extends storage {
 
 	public JFrame mainframe;
 
