@@ -13,8 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
 import javax.swing.ImageIcon;
+import java.sql.*;
 
-public class front_page {
+public class front_page extends storage {
 
 	public JFrame F_pg;
 
@@ -43,6 +44,40 @@ public class front_page {
 	public front_page() {
 
 		initialize();
+
+	}
+
+	public void show_detail(String id, String tablename, String data_base, JLabel name, JLabel store_name,
+			JLabel address, JLabel email, JLabel phone) {
+		Connection con = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + data_base, "postgres",
+					"admin");
+			stmt = con.createStatement();
+			String sql = "select * from " + tablename + " where  client_id = '" + id + "' ;";
+			ResultSet res = stmt.executeQuery(sql);
+			if (res.next()) {
+				name.setText(res.getString(2));
+				store_name.setText(res.getString(5));
+				address.setText(res.getString(4));
+				email.setText(res.getString(6));
+				phone.setText(res.getString(7));
+			} else {
+				System.out.println("oobi");
+
+			}
+
+			stmt.close();
+			if (con != null) {
+				System.out.println("Connected");
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+
+		}
 
 	}
 
@@ -109,7 +144,6 @@ public class front_page {
 				Place_order_page po = new Place_order_page();
 				po.P_O_frame.setVisible(true);
 				F_pg.dispose();
-
 			}
 		});
 		Nav_btn2.setBounds(198, 25, 165, 39);
@@ -132,60 +166,62 @@ public class front_page {
 		Nav.add(Nav_btn4);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(357, 180, 360, 250);
+		panel.setBounds(285, 150, 491, 327);
 		F_pg.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel Name_label = new JLabel("Name :");
 		Name_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Name_label.setBounds(8, 23, 62, 18);
+		Name_label.setBounds(15, 37, 62, 18);
 		panel.add(Name_label);
 
 		JLabel Name_display = new JLabel("Gautam Krishna M");
 		Name_display.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Name_display.setBounds(134, 26, 190, 13);
+		Name_display.setBounds(137, 30, 205, 32);
 		panel.add(Name_display);
 
 		JLabel Store_display = new JLabel("Gautam Krishna M");
 		Store_display.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Store_display.setBounds(134, 56, 178, 13);
+		Store_display.setBounds(137, 77, 249, 33);
 		panel.add(Store_display);
 
 		JLabel Store_label = new JLabel("StoreName  :");
 		Store_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Store_label.setBounds(8, 54, 100, 16);
+		Store_label.setBounds(15, 85, 100, 16);
 		panel.add(Store_label);
 
 		JLabel Address_display = new JLabel("Gautam Krishna M");
 		Address_display.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Address_display.setBounds(134, 79, 218, 24);
+		Address_display.setBounds(137, 127, 328, 32);
 		panel.add(Address_display);
 
 		JLabel Address_label = new JLabel("Address :");
 		Address_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Address_label.setBounds(8, 82, 100, 29);
+		Address_label.setBounds(15, 129, 100, 29);
 		panel.add(Address_label);
 
 		JLabel Phone_display = new JLabel("Gautam Krishna M");
 		Phone_display.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Phone_display.setBounds(134, 153, 178, 13);
+		Phone_display.setBounds(137, 224, 186, 30);
 		panel.add(Phone_display);
 
 		JLabel Phone_label = new JLabel("Phone  :");
 		Phone_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Phone_label.setBounds(8, 153, 69, 13);
+		Phone_label.setBounds(21, 233, 69, 13);
 		panel.add(Phone_label);
 
 		JLabel Email_label = new JLabel("Email  :");
 		Email_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Email_label.setBounds(8, 120, 100, 23);
+		Email_label.setBounds(15, 176, 100, 23);
 		panel.add(Email_label);
 
 		JLabel Email_display = new JLabel("Gautam Krishna M");
 		Email_display.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Email_display.setBounds(134, 117, 190, 13);
+		Email_display.setBounds(137, 169, 295, 40);
 		panel.add(Email_display);
 
+		show_detail(main_id, "client", "mypharma", Name_display, Store_display, Address_display, Email_display,
+				Phone_display);
 		JButton edit_btn = new JButton("Edit profile");
 		edit_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -194,7 +230,7 @@ public class front_page {
 				F_pg.dispose();
 			}
 		});
-		edit_btn.setBounds(103, 206, 172, 29);
+		edit_btn.setBounds(190, 273, 172, 29);
 		panel.add(edit_btn);
 
 		JLabel Profile_photo = new JLabel("");
