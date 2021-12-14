@@ -4,21 +4,24 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ad_log_in {
+public class Ad_log_in extends storage {
 
 	public JFrame Admin_frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField username;
+	private JTextField password;
 
 	/**
 	 * Launch the application.
@@ -98,15 +101,15 @@ public class Ad_log_in {
 		User_label.setBounds(39, 103, 132, 31);
 		panel_1_1.add(User_label);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(58, 144, 293, 31);
-		panel_1_1.add(textField);
+		username = new JTextField();
+		username.setColumns(10);
+		username.setBounds(58, 144, 293, 31);
+		panel_1_1.add(username);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(62, 232, 293, 31);
-		panel_1_1.add(textField_1);
+		password = new JPasswordField();
+		password.setColumns(10);
+		password.setBounds(62, 232, 293, 31);
+		panel_1_1.add(password);
 
 		JLabel User_label_1 = new JLabel("Password");
 		User_label_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -116,6 +119,27 @@ public class Ad_log_in {
 		panel_1_1.add(User_label_1);
 
 		Button button = new Button("Submit");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Client_login_connector log_connect = new Client_login_connector();
+
+				String user_name = username.getText();
+				String pass = password.getText();
+				log_connect.linker(user_name, pass, "manager", "mypharma");
+				main_id = log_connect.id;
+				if (log_connect.checker) {
+
+					admin_front_page f1 = new admin_front_page();
+					f1.admin_frame.setVisible(true);
+					Admin_frame.dispose();
+				} else {
+
+					JOptionPane.showMessageDialog(Admin_frame, "Sorry Your Username or password is wrong ");
+					username.setText("");
+					password.setText("");
+				}
+			}
+		});
 		button.setFont(new Font("Bernard MT Condensed", Font.PLAIN, 18));
 		button.setBackground(new Color(0, 206, 209));
 		button.setBounds(89, 368, 262, 59);

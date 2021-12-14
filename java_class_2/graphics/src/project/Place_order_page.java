@@ -16,15 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JSeparator;
 
-public class Place_order_page {
+public class Place_order_page extends storage {
 
 	public JFrame P_O_frame;
 	private JTextField quantity;
+	JDBC_table_printer jdbcobj = new JDBC_table_printer();
 	private JTable table;
 
 	/**
@@ -150,123 +148,57 @@ public class Place_order_page {
 
 		JLabel lblNewLabel_1 = new JLabel("Place your order");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(179, 137, 173, 39);
+		lblNewLabel_1.setBounds(143, 0, 173, 39);
 		panel.add(lblNewLabel_1);
 
 		quantity = new JTextField();
 		quantity.setColumns(10);
-		quantity.setBounds(451, 309, 107, 19);
+		quantity.setBounds(432, 287, 107, 19);
 		panel.add(quantity);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(219, 186, 541, 113);
-		panel.add(scrollPane);
-		//
-		//
-		//
-		//
-		//
-		//
-
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-						"SI No:", "Medicine Name", "Quantity", "Price"
-				}) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] {
-					Integer.class, String.class, Integer.class, Integer.class
-			};
-
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		scrollPane.setViewportView(table);
 
 		JLabel lblNewLabel_2 = new JLabel("Medicine");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(143, 302, 76, 31);
+		lblNewLabel_2.setBounds(143, 280, 76, 31);
 		panel.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_2_1 = new JLabel("Quantity");
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2_1.setBounds(392, 302, 90, 31);
+		lblNewLabel_2_1.setBounds(371, 280, 90, 31);
 		panel.add(lblNewLabel_2_1);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setEditable(true);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "a", "as", "asd", "asdf" }));
-		comboBox.setBounds(219, 308, 133, 21);
+		jdbcobj.med_names("mypharma");
+		JComboBox comboBox = new JComboBox(jdbcobj.med_collect);
+		comboBox.setBounds(214, 286, 117, 21);
+
 		panel.add(comboBox);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(153, 49, 600, 197);
+		panel.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		jdbcobj.print_specific_attribute_table("orders", "mypharma", table, main_id,
+				"medicine_id, medicine_name ,order_quantity,final_amount");
 		JButton add_med_purchase = new JButton(" Add for purchase");
+
 		add_med_purchase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int sino = 0;
-				int price = 800;
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.addRow(
-						new Object[] { sino, comboBox.getSelectedItem(), Integer.parseInt(quantity.getText()), price });
-				//
-				// comboBox.getText()
-				// kkkkkkkk
-				/// kkkk
+				jdbcobj.med_price("mypharma", String.valueOf(comboBox.getItemAt(comboBox.getSelectedIndex())));
+				int qty = Integer.valueOf(quantity.getText());
+				Float total_qty_price = jdbcobj.med_price_collector * qty;
+				System.out.println();
+				jdbcobj.addorder("mypharma", String.valueOf(client_order_id), main_id,
+						jdbcobj.med_id_collector, String.valueOf(comboBox.getItemAt(comboBox.getSelectedIndex())),
+						String.valueOf(qty), "20/2/2020", String.valueOf(total_qty_price));
 
-				//
+				jdbcobj.print_specific_attribute_table("orders", "mypharma", table, main_id,
+						"medicine_id, medicine_name ,order_quantity,final_amount");
+
 			}
 		});
-		add_med_purchase.setBounds(608, 308, 152, 21);
+		add_med_purchase.setBounds(601, 286, 152, 21);
 		panel.add(add_med_purchase);
-
-		JLabel lblNewLabel_1_2 = new JLabel("Check Avalibility");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1_2.setBounds(179, 10, 173, 39);
-		panel.add(lblNewLabel_1_2);
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setEditable(true);
-		comboBox_1.setBounds(219, 59, 133, 21);
-		panel.add(comboBox_1);
-
-		JLabel lblNewLabel_2_2 = new JLabel("Medicine");
-		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2_2.setBounds(143, 53, 76, 31);
-		panel.add(lblNewLabel_2_2);
-
-		JLabel lblNewLabel_2_3 = new JLabel("Price");
-		lblNewLabel_2_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2_3.setBounds(143, 98, 76, 31);
-		panel.add(lblNewLabel_2_3);
-
-		JLabel lblNewLabel_2_3_1 = new JLabel("Stock Status");
-		lblNewLabel_2_3_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2_3_1.setBounds(392, 98, 85, 31);
-		panel.add(lblNewLabel_2_3_1);
-
-		JLabel medicine_price = new JLabel("Price per unit");
-		medicine_price.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		medicine_price.setBounds(223, 95, 129, 40);
-		panel.add(medicine_price);
-
-		JLabel medicine_price_1 = new JLabel("Price per unit");
-		medicine_price_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		medicine_price_1.setBounds(511, 96, 107, 37);
-		panel.add(medicine_price_1);
-
-		JButton btnNewButton_1 = new JButton("Check Availibility");
-		btnNewButton_1.setBounds(401, 59, 179, 21);
-		panel.add(btnNewButton_1);
-
-		JSeparator separator = new JSeparator();
-		separator.setBackground(Color.BLACK);
-		separator.setBounds(143, 137, 617, 2);
-		panel.add(separator);
 
 	}
 }

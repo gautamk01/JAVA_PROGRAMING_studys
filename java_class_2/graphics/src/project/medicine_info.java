@@ -1,12 +1,12 @@
 package project;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Button;
@@ -16,10 +16,14 @@ import javax.swing.Box;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class medicine_info extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
+	JDBC_table_printer medical_info_table = new JDBC_table_printer();
 
 	/**
 	 * Launch the application.
@@ -65,12 +69,12 @@ public class medicine_info extends JFrame {
 		JButton Nav_btn2 = new JButton("Client Info");
 		Nav_btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Client_info c1 = new Client_info();
-				
+
 				c1.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		Nav_btn2.setBounds(65, 25, 165, 39);
@@ -92,27 +96,84 @@ public class medicine_info extends JFrame {
 		Nav_btn4.setBounds(292, 25, 165, 39);
 		Nav.add(Nav_btn4);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 150, 766, 246);
+		contentPane.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
+		medical_info_table.print_table("medicine_inventory", "mypharma", table);
+
 		JPanel panel = new JPanel();
-		panel.setBounds(90, 428, 530, 49);
+		panel.setBounds(120, 417, 530, 49);
 		contentPane.add(panel);
 
 		JButton btnNewButton_2 = new JButton("Delete");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				medical_info_table.delete_box("medicine_inventory", table, "mypharma", "medicine_id");
+				medical_info_table.print_table("medicine_inventory", "mypharma", table);
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		Component horizontalStrut = Box.createHorizontalStrut(40);
 		panel.add(horizontalStrut);
 
-		JButton btnNewButton_1 = new JButton("Update");
-		panel.add(btnNewButton_1);
+		// JButton btnNewButton_1 = new JButton("Update");
+		// btnNewButton_1.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// JTextField id = new JTextField();
+		// JTextField price = new JTextField();
+		// Object[] message = {
+		// "Id :", id,
+		// "Update price :", price
+		// };
+
+		// int option = JOptionPane.showConfirmDialog(null, message, "Login",
+		// JOptionPane.OK_CANCEL_OPTION);
+		// if (option == JOptionPane.OK_OPTION) {
+
+		// } else {
+		// System.out.println("Login canceled");
+		// }
+		// }
+		// });
+		// panel.add(btnNewButton_1);
 
 		Component horizontalStrut_1 = Box.createHorizontalStrut(40);
 		panel.add(horizontalStrut_1);
 
 		JButton btnInsert = new JButton("Insert");
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JTextField med_id = new JTextField();
+				JTextField med_name = new JTextField();
+				JTextField med_manu = new JTextField();
+				JTextField med_exp = new JTextField();
+				JTextField med_price = new JTextField();
+				Object[] message = {
+						"Med_Id :", med_id,
+						"Med_name :", med_name,
+						"Manufacture Date:", med_manu,
+						"Expire Date : ", med_exp,
+						"price : ", med_price
+				};
+
+				int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+				if (option == JOptionPane.OK_OPTION) {
+					medical_info_table.insert_tuple("'" + med_id.getText() + "','" + med_name.getText() + "','"
+							+ med_manu.getText() + "','" + med_exp.getText() + "'", "medicine_inventory", table,
+							"mypharma");
+					medical_info_table.print_table("medicine_inventory", "mypharma", table);
+				} else {
+					System.out.println("Login canceled");
+				}
+			}
+		});
 		panel.add(btnInsert);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(60, 197, 602, 182);
-		contentPane.add(scrollPane);
 	}
 }
