@@ -2,6 +2,8 @@ package project;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.Font;
@@ -12,8 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
-public class C_log_in {
+public class C_log_in extends storage {
 
 	public JFrame Client_frame;
 	private JTextField userfield;
@@ -60,6 +63,18 @@ public class C_log_in {
 		lblNewLabel.setBounds(0, -107, 481, 569);
 		panel.add(lblNewLabel);
 
+		JButton register = new JButton("Register");
+		register.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registration reg = new registration();
+				reg.frame.setVisible(true);
+				Client_frame.dispose();
+
+			}
+		});
+		register.setBounds(193, 409, 171, 30);
+		panel.add(register);
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
 		panel_1.setForeground(Color.BLACK);
@@ -86,7 +101,7 @@ public class C_log_in {
 		panel_1.add(userfield);
 		userfield.setColumns(10);
 
-		passfield = new JTextField();
+		passfield = new JPasswordField();
 		passfield.setColumns(10);
 		passfield.setBounds(51, 234, 293, 31);
 		panel_1.add(passfield);
@@ -101,14 +116,16 @@ public class C_log_in {
 		Button button = new Button("Submit");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				front_page f1 = new front_page();
+
 				Client_login_connector log_connect = new Client_login_connector();
 
 				String user_name = userfield.getText();
-				int pass = Integer.valueOf(passfield.getText());
-				log_connect.linker(user_name, pass);
-
+				String pass = passfield.getText();
+				log_connect.linker(user_name, pass, "client", "mypharma");
+				main_id = log_connect.id;
 				if (log_connect.checker) {
+
+					front_page f1 = new front_page();
 					f1.F_pg.setVisible(true);
 					Client_frame.dispose();
 				} else {
