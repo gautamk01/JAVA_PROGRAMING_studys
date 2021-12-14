@@ -32,14 +32,15 @@ public class trail extends JFrame {
 		Statement stmt1 = null;
 		try {
 			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/help", "postgres",
-					"admin");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres",
+					"5056");
 			stmt = con.createStatement();
 			stmt1 = con.createStatement();
 
-			String sql = "insert into Store values(" + name + ",'Sakthi Meidcals','Malappuram','krishna',1234);";
-			// String sql1 = "select * from Store;";
-			ResultSet res = stmt1.executeQuery(sql);
+			// String sql = "insert into Store values(" + name + ",'Sakthi
+			// Meidcals','Malappuram','krishna',1234);";
+			String sql1 = "select * from login;";
+			ResultSet res = stmt1.executeQuery(sql1);
 			// ResultSet res1 = stmt.executeQuery(sql1);
 			table.setModel(DbUtils.resultSetToTableModel(res));
 			if (res.next()) {
@@ -100,8 +101,8 @@ public class trail extends JFrame {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				table1.print_table("client", "mypharma", table);
 
-				table1.print_table("Store", table);
 			}
 		});
 		btnNewButton.setBounds(355, 41, 363, 41);
@@ -110,8 +111,7 @@ public class trail extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = JOptionPane.showInputDialog("Enter the index:");
-				table1.delete_tuple("Store_id = " + name, "Store", table);
-				table1.print_table("Store", table);
+				table1.print_table("Store", "mypharma", table);
 			}
 		});
 		btnNewButton_1.setBounds(109, 51, 83, 21);
