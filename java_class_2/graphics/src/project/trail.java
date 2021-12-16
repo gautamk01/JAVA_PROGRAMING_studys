@@ -32,14 +32,14 @@ public class trail extends JFrame {
 		Statement stmt1 = null;
 		try {
 			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres",
-					"5056");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/mypharma", "postgres",
+					"admin");
 			stmt = con.createStatement();
 			stmt1 = con.createStatement();
 
 			// String sql = "insert into Store values(" + name + ",'Sakthi
 			// Meidcals','Malappuram','krishna',1234);";
-			String sql1 = "select * from login;";
+			String sql1 = "select * from client;";
 			ResultSet res = stmt1.executeQuery(sql1);
 			// ResultSet res1 = stmt.executeQuery(sql1);
 			table.setModel(DbUtils.resultSetToTableModel(res));
@@ -101,7 +101,7 @@ public class trail extends JFrame {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table1.print_table("client", "mypharma", table);
+				function2("asf");
 
 			}
 		});
@@ -110,8 +110,6 @@ public class trail extends JFrame {
 		JButton btnNewButton_1 = new JButton("delete");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = JOptionPane.showInputDialog("Enter the index:");
-				table1.print_table("Store", "mypharma", table);
 			}
 		});
 		btnNewButton_1.setBounds(109, 51, 83, 21);

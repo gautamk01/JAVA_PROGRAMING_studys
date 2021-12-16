@@ -29,6 +29,7 @@ public class Place_order_page extends storage {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,6 +46,7 @@ public class Place_order_page extends storage {
 	 * Create the application.
 	 */
 	public Place_order_page() {
+		order_count();
 		initialize();
 	}
 
@@ -71,12 +73,6 @@ public class Place_order_page extends storage {
 		heading.setForeground(Color.WHITE);
 		heading.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		heading.setBackground(Color.WHITE);
-
-		Button button = new Button("Log out");
-		button.setBounds(657, 20, 117, 27);
-		Header.add(button);
-		button.setForeground(new Color(240, 255, 255));
-		button.setBackground(new Color(255, 69, 0));
 
 		JPanel Nav = new JPanel();
 		Nav.setLayout(null);
@@ -179,7 +175,7 @@ public class Place_order_page extends storage {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		jdbcobj.print_specific_attribute_table("orders", "mypharma", table, main_id,
-				"medicine_id, medicine_name ,order_quantity,final_amount");
+				"medicine_id, medicine_name ,order_quantity,final_amount", String.valueOf(client_order_id));
 		JButton add_med_purchase = new JButton(" Add for purchase");
 
 		add_med_purchase.addActionListener(new ActionListener() {
@@ -193,12 +189,24 @@ public class Place_order_page extends storage {
 						String.valueOf(qty), "20/2/2020", String.valueOf(total_qty_price));
 
 				jdbcobj.print_specific_attribute_table("orders", "mypharma", table, main_id,
-						"medicine_id, medicine_name ,order_quantity,final_amount");
+						"medicine_id, medicine_name ,order_quantity,final_amount", String.valueOf(client_order_id));
 
 			}
 		});
 		add_med_purchase.setBounds(601, 286, 152, 21);
 		panel.add(add_med_purchase);
+
+		JButton btnNewButton = new JButton("remove from puchase");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				jdbcobj.remove_from_order("orders", table, "mypharma", String.valueOf(client_order_id));
+				jdbcobj.print_specific_attribute_table("orders", "mypharma", table, main_id,
+						"medicine_id, medicine_name ,order_quantity,final_amount", String.valueOf(client_order_id));
+			}
+		});
+		btnNewButton.setBounds(601, 317, 152, 21);
+		panel.add(btnNewButton);
 
 	}
 }

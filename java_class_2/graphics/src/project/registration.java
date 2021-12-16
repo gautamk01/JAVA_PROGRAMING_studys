@@ -225,7 +225,7 @@ public class registration {
                     String pin = pinnam.getText();
                     String phn = phoneno.getText();
                     String passw = pass.getText();
-                    String client_address = strnam + city + dist + pin;
+                    String client_address = strnam +" "+ city +" "+ dist +" "+ pin;
                     Client_login_connector cin = new Client_login_connector();
                     cin.regsql(1, usrname, passw, client_address, storname, email1, phn);
                     C_log_in cin1 = new C_log_in();
