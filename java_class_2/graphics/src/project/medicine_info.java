@@ -154,18 +154,21 @@ public class medicine_info extends JFrame {
 				JTextField med_manu = new JTextField();
 				JTextField med_exp = new JTextField();
 				JTextField med_price = new JTextField();
+				JTextField supplier = new JTextField();
 				Object[] message = {
 						"Med_Id :", med_id,
 						"Med_name :", med_name,
 						"Manufacture Date:", med_manu,
 						"Expire Date : ", med_exp,
+						"Supplier_Name : ", supplier,
 						"price : ", med_price
 				};
 
 				int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
-					medical_info_table.insert_tuple("'" + med_id.getText() + "','" + med_name.getText() + "','"
-							+ med_manu.getText() + "','" + med_exp.getText() + "'", "medicine_inventory", table,
+					medical_info_table.insert_tuple(med_id.getText() + ",'" + med_name.getText() + "','"
+							+ med_manu.getText() + "','" + med_exp.getText() + "'" + ",'" + supplier.getText() + "',"
+							+ med_price.getText(), "medicine_inventory", table,
 							"mypharma");
 					medical_info_table.print_table("medicine_inventory", "mypharma", table);
 				} else {

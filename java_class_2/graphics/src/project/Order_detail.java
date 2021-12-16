@@ -12,16 +12,61 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 
-public class Order_detail {
+import net.proteanit.sql.DbUtils;
+
+import javax.swing.ImageIcon;
+import java.sql.*;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class Order_detail extends storage {
 
 	public JFrame Order_frame;
+	private JTable table;
+
+	public void display_order_detail(String databasename, String tablename, String order_id, String client_id,
+			JTextArea order_address, JTable table) {
+		try {
+			Connection con = null;
+			Statement stmt = null;
+			Statement stmt1 = null;
+			Class.forName("org.postgresql.Driver");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + databasename, "postgres",
+					"admin");
+			stmt = con.createStatement();
+			stmt1 = con.createStatement();
+
+			String sql1 = " Select client_address from client where client_id = " + client_id + ";";
+			String sql = "select distinct(medicine_name) from " + tablename + " AS  _  where order_id = " + order_id
+					+ " and client_id = "
+					+ client_id + " IS NOT NULL;";
+			// Select id, fname , city from client;
+			ResultSet res1 = stmt1.executeQuery(sql1);
+			ResultSet res = stmt.executeQuery(sql);
+			table.setModel(DbUtils.resultSetToTableModel(res));
+
+			if (res1.next()) {
+				order_address.setText(res1.getString(1));
+			}
+
+			stmt.close();
+			if (con != null) {
+				System.out.println("Connected");
+			}
+
+		} catch (Exception es) {
+			System.out.println(es.getMessage());
+
+		}
+	}
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		order_count();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -147,44 +192,51 @@ public class Order_detail {
 		lblNewLabel_1_2_2.setBounds(182, 248, 112, 31);
 		panel.add(lblNewLabel_1_2_2);
 
-		JLabel lblNewLabel_1_2_2_1 = new JLabel("Possible delivery date");
+		JLabel lblNewLabel_1_2_2_1 = new JLabel("Possible delivery ");
 		lblNewLabel_1_2_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_1_2_2_1.setBounds(182, 303, 143, 31);
 		panel.add(lblNewLabel_1_2_2_1);
-
-		JLabel lblNewLabel_1_3 = new JLabel("Order ID");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1_3.setBounds(342, 42, 112, 31);
-		panel.add(lblNewLabel_1_3);
-
-		JLabel lblNewLabel_1_3_1 = new JLabel("Order ID");
-		lblNewLabel_1_3_1.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_1_3_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1_3_1.setBounds(342, 91, 161, 81);
-		panel.add(lblNewLabel_1_3_1);
-
-		JLabel lblNewLabel_1_3_2 = new JLabel("Order ID");
-		lblNewLabel_1_3_2.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_1_3_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1_3_2.setBounds(342, 174, 161, 77);
-		panel.add(lblNewLabel_1_3_2);
-
-		JLabel lblNewLabel_1_3_3 = new JLabel("Order ID");
-		lblNewLabel_1_3_3.setBackground(new Color(248, 248, 255));
-		lblNewLabel_1_3_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1_3_3.setBounds(342, 248, 143, 31);
-		panel.add(lblNewLabel_1_3_3);
-
-		JLabel lblNewLabel_1_3_4 = new JLabel("Order ID");
-		lblNewLabel_1_3_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1_3_4.setBounds(342, 303, 112, 31);
-		panel.add(lblNewLabel_1_3_4);
 
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\javaEclipse\\graphics\\src\\img\\java_img2.jpg"));
 
 		lblNewLabel_2.setBounds(513, 42, 226, 209);
 		panel.add(lblNewLabel_2);
-	}
 
+		JTextArea Delivery_area = new JTextArea();
+		Delivery_area.setEditable(false);
+		Delivery_area.setLineWrap(true);
+		Delivery_area.setBounds(342, 170, 163, 68);
+		panel.add(Delivery_area);
+
+		JTextArea order_id_area = new JTextArea();
+		order_id_area.setWrapStyleWord(true);
+		order_id_area.setLineWrap(true);
+		order_id_area.setEditable(false);
+		order_id_area.setBounds(342, 46, 163, 31);
+		order_id_area.setText(String.valueOf(client_order_id));
+		panel.add(order_id_area);
+
+		JTextArea status = new JTextArea();
+		status.setText("In progress");
+		status.setLineWrap(true);
+		status.setEditable(false);
+		status.setBounds(342, 252, 163, 31);
+		panel.add(status);
+
+		JTextArea order_date = new JTextArea();
+		order_date.setText("within 7 days");
+		order_date.setLineWrap(true);
+		order_date.setEditable(false);
+		order_date.setBounds(342, 307, 163, 31);
+		panel.add(order_date);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(342, 92, 163, 68);
+		panel.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		display_order_detail("mypharma", "orders", String.valueOf(client_order_id), main_id, Delivery_area, table);
+	}
 }
