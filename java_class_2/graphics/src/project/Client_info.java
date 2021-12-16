@@ -113,7 +113,8 @@ public class Client_info extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		table_make.print_table("client", "mypharma", table);
+		table_make.print_table_specific_attribute("client", "mypharma", table,
+				"client_id,client_name ,client_address,client_email,mobilephone");
 
 		JPanel panel = new JPanel();
 		panel.setBounds(118, 428, 530, 49);

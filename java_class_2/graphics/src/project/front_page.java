@@ -170,9 +170,9 @@ public class front_page extends storage {
 		F_pg.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel Name_label = new JLabel("Name :");
+		JLabel Name_label = new JLabel("Name          :");
 		Name_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Name_label.setBounds(15, 37, 62, 18);
+		Name_label.setBounds(8, 37, 121, 18);
 		panel.add(Name_label);
 
 		JLabel Name_display = new JLabel("Gautam Krishna M");
@@ -185,9 +185,9 @@ public class front_page extends storage {
 		Store_display.setBounds(137, 77, 249, 33);
 		panel.add(Store_display);
 
-		JLabel Store_label = new JLabel("StoreName  :");
+		JLabel Store_label = new JLabel("StoreName   :");
 		Store_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Store_label.setBounds(15, 85, 100, 16);
+		Store_label.setBounds(8, 85, 121, 16);
 		panel.add(Store_label);
 
 		JLabel Address_display = new JLabel("Gautam Krishna M");
@@ -195,9 +195,9 @@ public class front_page extends storage {
 		Address_display.setBounds(137, 127, 328, 32);
 		panel.add(Address_display);
 
-		JLabel Address_label = new JLabel("Address :");
+		JLabel Address_label = new JLabel("Address        :");
 		Address_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Address_label.setBounds(15, 129, 100, 29);
+		Address_label.setBounds(8, 129, 121, 29);
 		panel.add(Address_label);
 
 		JLabel Phone_display = new JLabel("Gautam Krishna M");
@@ -205,14 +205,14 @@ public class front_page extends storage {
 		Phone_display.setBounds(137, 224, 186, 30);
 		panel.add(Phone_display);
 
-		JLabel Phone_label = new JLabel("Phone  :");
+		JLabel Phone_label = new JLabel("Phone           :");
 		Phone_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Phone_label.setBounds(21, 233, 69, 13);
+		Phone_label.setBounds(8, 233, 121, 13);
 		panel.add(Phone_label);
 
-		JLabel Email_label = new JLabel("Email  :");
+		JLabel Email_label = new JLabel("Email            :");
 		Email_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Email_label.setBounds(15, 176, 100, 23);
+		Email_label.setBounds(8, 178, 121, 23);
 		panel.add(Email_label);
 
 		JLabel Email_display = new JLabel("Gautam Krishna M");
