@@ -50,7 +50,7 @@ public class admin_front_page extends storage {
 			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + data_base, "postgres",
 					"admin");
 			stmt = con.createStatement();
-			String sql = "select * from " + tablename + " where  manager_id = '" + id + "' ;";
+			String sql = "select * from " + tablename + " where  manager_id = " + id + " ;";
 			ResultSet res = stmt.executeQuery(sql);
 			if (res.next()) {
 				name.setText(res.getString(2));
@@ -147,7 +147,7 @@ public class admin_front_page extends storage {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(291, 150, 485, 327);
+		panel.setBounds(291, 150, 485, 254);
 		admin_frame.getContentPane().add(panel);
 
 		JLabel Name_label = new JLabel("Name :");
@@ -182,7 +182,7 @@ public class admin_front_page extends storage {
 
 		JLabel Phone_display = new JLabel("Gautam Krishna M");
 		Phone_display.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Phone_display.setBounds(151, 204, 228, 42);
+		Phone_display.setBounds(151, 200, 228, 42);
 		panel.add(Phone_display);
 
 		JLabel Phone_label = new JLabel("Phone  :");
@@ -202,13 +202,32 @@ public class admin_front_page extends storage {
 
 		show_detail(main_id, "manager", "mypharma", Name_display, Store_display, Address_display, Email_display,
 				Phone_display);
-		JButton edit_btn = new JButton("Edit profile");
-		edit_btn.setBounds(138, 283, 194, 34);
-		panel.add(edit_btn);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(admin_front_page.class.getResource("/img/PngItem_1468479 (1).png")));
 		lblNewLabel.setBounds(29, 183, 200, 237);
 		admin_frame.getContentPane().add(lblNewLabel);
+		
+				JButton edit_btn = new JButton("Bill Status ");
+				edit_btn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						bill_status bill1 = new bill_status();
+						bill1.frame.setVisible(true);
+						admin_frame.dispose();
+					}
+				});
+				edit_btn.setBounds(279, 426, 194, 34);
+				admin_frame.getContentPane().add(edit_btn);
+				
+				JButton edit_btn_1 = new JButton("Order Details");
+				edit_btn_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						order_history oh1 = new order_history();
+						oh1.frame.setVisible(true);
+						admin_frame.dispose();
+					}
+				});
+				edit_btn_1.setBounds(495, 426, 194, 34);
+				admin_frame.getContentPane().add(edit_btn_1);
 	}
 }

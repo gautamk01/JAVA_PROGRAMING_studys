@@ -6,22 +6,30 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 
-public class Bill_page {
+public class Bill_page extends storage {
 
 	public JFrame Bill_frame;
+	Random rand = new Random();
+	JDBC_table_printer jdbcobj = new JDBC_table_printer();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		order_count();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -50,6 +58,7 @@ public class Bill_page {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		int id = rand.nextInt(10000);
 
 		Bill_frame = new JFrame();
 		Bill_frame.setBounds(100, 100, 798, 524);
@@ -70,12 +79,6 @@ public class Bill_page {
 		heading.setForeground(Color.WHITE);
 		heading.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		heading.setBackground(Color.WHITE);
-
-		Button button = new Button("Log out");
-		button.setBounds(657, 20, 117, 27);
-		Header.add(button);
-		button.setForeground(new Color(240, 255, 255));
-		button.setBackground(new Color(255, 69, 0));
 		JPanel Nav = new JPanel();
 		Nav.setLayout(null);
 		Nav.setForeground(Color.WHITE);
@@ -147,41 +150,17 @@ public class Bill_page {
 		lblNewLabel.setBounds(172, 62, 105, 34);
 		panel.add(lblNewLabel);
 
-		JLabel lblContents = new JLabel("contents");
-		lblContents.setBounds(172, 106, 105, 34);
-		panel.add(lblContents);
-
 		JLabel lblNewLabel_1_2 = new JLabel("Total Cost");
-		lblNewLabel_1_2.setBounds(172, 171, 105, 34);
+		lblNewLabel_1_2.setBounds(172, 118, 105, 34);
 		panel.add(lblNewLabel_1_2);
 
 		JLabel lblNewLabel_1_3 = new JLabel("Mode of Payment");
-		lblNewLabel_1_3.setBounds(172, 234, 105, 34);
+		lblNewLabel_1_3.setBounds(172, 162, 105, 34);
 		panel.add(lblNewLabel_1_3);
 
 		JLabel lblNewLabel_1_4 = new JLabel("Order ID");
 		lblNewLabel_1_4.setBounds(172, 10, 105, 34);
 		panel.add(lblNewLabel_1_4);
-
-		JLabel lblNewLabel_1 = new JLabel("---");
-		lblNewLabel_1.setBounds(367, 16, 105, 23);
-		panel.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_1_5 = new JLabel("---");
-		lblNewLabel_1_5.setBounds(367, 62, 105, 23);
-		panel.add(lblNewLabel_1_5);
-
-		JLabel lblNewLabel_1_6 = new JLabel("---");
-		lblNewLabel_1_6.setBounds(367, 106, 105, 23);
-		panel.add(lblNewLabel_1_6);
-
-		JLabel lblNewLabel_1_7 = new JLabel("---");
-		lblNewLabel_1_7.setBounds(367, 171, 105, 23);
-		panel.add(lblNewLabel_1_7);
-
-		JLabel lblNewLabel_1_8 = new JLabel("---");
-		lblNewLabel_1_8.setBounds(367, 234, 105, 23);
-		panel.add(lblNewLabel_1_8);
 
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setIcon(new ImageIcon("C:\\javaEclipse\\graphics\\src\\img\\pic6.jpeg"));
@@ -189,6 +168,47 @@ public class Bill_page {
 		lblNewLabel_4.setBounds(564, 43, 176, 160);
 		panel.add(lblNewLabel_4);
 
-	}
+		JTextArea order_id = new JTextArea();
+		order_id.setBounds(305, 15, 105, 22);
+		order_id.setText(String.valueOf(client_order_id));
+		panel.add(order_id);
 
+		Calendar c = Calendar.getInstance();
+
+		JTextArea date_ordering = new JTextArea();
+		date_ordering.setBounds(305, 67, 105, 22);
+		date_ordering.setText(String.valueOf(c.getTime()));
+		panel.add(date_ordering);
+
+		jdbcobj.total("mypharma", String.valueOf(client_order_id));
+		JTextArea Total_amount = new JTextArea();
+		Total_amount.setBounds(305, 123, 105, 22);
+		Total_amount.setText(jdbcobj.final_amount);
+		panel.add(Total_amount);
+		String[] payment = { "Cash ", "Credit card", "debit card" };
+		JComboBox comboBox = new JComboBox(payment);
+		comboBox.setBounds(305, 169, 105, 21);
+		panel.add(comboBox);
+
+		Button button_1 = new Button("Purchase ");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int bill_id = rand.nextInt(10000);
+				jdbcobj.Bill_table("billing", "mypharma", bill_id, String.valueOf(client_order_id),
+						jdbcobj.final_amount);
+				order_incre();
+				JOptionPane.showMessageDialog(null, "Purchase Completed");
+				Total_amount.setText(" ");
+				System.out.println(id);
+				Place_order_page po = new Place_order_page();
+				po.P_O_frame.setVisible(true);
+				Bill_frame.dispose();
+			}
+		});
+		button_1.setFont(new Font("Dubai Light", Font.BOLD, 23));
+		button_1.setBackground(Color.GREEN);
+		button_1.setBounds(234, 250, 212, 61);
+		panel.add(button_1);
+
+	}
 }
